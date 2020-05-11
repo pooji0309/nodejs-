@@ -1,0 +1,32 @@
+ function todo(data){
+    return new Promise((resolve,reject)=>{
+          let successmessage = {
+            staus : 'success',
+            message : 'all is well'
+             
+          };
+          let errormessage = {
+            staus : 'error',
+            message : 'oops there is an error'
+          };
+          if (typeof data === 'boolean' && data === true){
+            resolve(successmessage);
+          }else{
+            reject(errormessage);
+          }
+  });
+  }
+  todo(true).then(
+    ()=>{
+    console.log('first todo resolved');
+    return todo(true)
+    }
+  ).then(
+    ()=>{
+      console.log('second todo resolved');
+    }
+  ).catch(
+    ()=>{
+      console.log('An error occured');
+  }
+  );
